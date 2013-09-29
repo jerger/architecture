@@ -1,5 +1,5 @@
 // Massstab 1 entspricht einem cm
-include <dormer/dormer.scad>
+use <dormer/dormer.scad>
 
 module keller() {
    neukellerbreite = 30 + 250 + 19;
@@ -41,11 +41,11 @@ module obergeschoss() {
 					[2,4,5],]);
 		translate([1200,haustiefe,0])
 		rotate([0,0,180])
-		coppedDormer(150, geschosshoehe, haustiefe - dachanfang);
+		houseDormer(150, geschosshoehe, haustiefe - dachanfang);
 	}
 }
 
-module dach () {
+module dachgeschoss () {
 	dachanfang = 430 + 250;
 	giebeltiefe = 535;
 	giebelhoehe = 280;
@@ -81,7 +81,7 @@ module haus () {
    bodenniveau = 103;
    union () {
 		translate([0,0,bodenniveau+300+290]) {
-			dach();
+			dachgeschoss();
 		}
        translate([0,0,bodenniveau+300]) {
 			obergeschoss();
@@ -95,6 +95,5 @@ module haus () {
 	}
 }
 
-scale(0.1, 0.1, 0.1 ) {
-	haus();
-}
+
+haus();
