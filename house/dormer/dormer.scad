@@ -4,8 +4,8 @@ module coppedDormer(width, height, depth) {
 	polyhedron(
 		points = [
 			[0, 0, 0], 
-			[width/2, depth, height], 
-			[width/2, 0, height], 
+			[width/2, height, -depth], 
+			[width/2, height, 0], 
 			[width, 0, 0],], 
 		triangles = [
 			[0,1,2], 
@@ -18,11 +18,11 @@ module plainDormer(width, height, depth) {
 	polyhedron(
 		points = [
 			[0, 0, 0], 
-			[0, depth, height],
-			[0, 0, height], 
+			[0, height, -depth],
+			[0, height, 0], 
 			[width, 0, 0], 
-			[width, depth, height],
-			[width, 0, height], ], 
+			[width, height, -depth],
+			[width, height, 0], ], 
 		triangles = [
 			[0, 1, 2], 
 			[1, 4, 2],
@@ -39,15 +39,15 @@ module houseDormer(width, height, depth) {
    ratioCopped = 1 - ratioPlain;
 
 	union()
-	translate([0, 0, height * ratioPlain]) {
+	translate([0, height * ratioPlain, 0]) {
 		polyhedron(
 			points = [
 				[0, 0, 0], 
-				[0, depth * ratioPlain, 0], 
-				[width/2, depth, height * ratioCopped], 
-				[width/2, 0, height * ratioCopped], 
+				[0, 0, -depth * ratioPlain], 
+				[width/2, height * ratioCopped, -depth], 
+				[width/2, height * ratioCopped, 0], 
 				[width, 0, 0], 
-				[width, depth * ratioPlain, 0],], 
+				[width, 0, -depth * ratioPlain],], 
 			triangles = [
 				[0, 1, 3], 
 				[1, 2, 3],
